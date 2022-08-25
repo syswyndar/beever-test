@@ -42,7 +42,7 @@ function counter(arr) {
   let result = {};
 
   //looping data according to data length
-  for (let i = 0; i < arr.length - 1; i++) {
+  for (let i = 0; i < arr.length; i++) {
     //check if arr[i] is already in result variable
     if (!result[arr[i]]) {
       //if the arr[i] is not in the result variable, add the arr[i] to the result variable with value is 1
