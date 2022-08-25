@@ -23,35 +23,57 @@ OUTPUT:
 */
 
 function jumlahTabungan(listHarga, history) {
-    // Write your code here
+  // Write your code here
+  let splitHistory = history.split(".");
+  let result = {};
+  let TotalTabungan = 0;
+
+  splitHistory.map((item) => {
+    let splitItem = item.split("-");
+    let makanan = splitItem[1].split(",");
+
+    let sisaUang = 10000;
+    makanan.map((x) => {
+      listHarga.map((list) => {
+        if (list.nama === x) {
+          sisaUang -= list.harga;
+        }
+      });
+    });
+    result[splitItem[0]] = sisaUang;
+    TotalTabungan += sisaUang;
+  });
+
+  result = { ...result, TotalTabungan };
+  return result;
 }
 
 var hargaMakanan = [
   {
     nama: "ayam",
-    harga: 5000
+    harga: 5000,
   },
   {
     nama: "nasi",
-    harga: 2000
+    harga: 2000,
   },
   {
     nama: "cola",
-    harga: 1000
+    harga: 1000,
   },
   {
     nama: "chiki",
-    harga: 1500
+    harga: 1500,
   },
   {
     nama: "hotdog",
-    harga: 3000
+    harga: 3000,
   },
   {
     nama: "aqua",
-    harga: 2000
-  }
-]
+    harga: 2000,
+  },
+];
 
-var historyPembelian = `Senin-ayam,nasi,cola.Selasa-chiki,hotdog.Rabu-ayam,chiki.Kamis-hotdog.Jumat-chiki,cola,nasi`
-console.log(jumlahTabungan(hargaMakanan, historyPembelian))
+var historyPembelian = `Senin-ayam,nasi,cola.Selasa-chiki,hotdog.Rabu-ayam,chiki.Kamis-hotdog.Jumat-chiki,cola,nasi`;
+console.log(jumlahTabungan(hargaMakanan, historyPembelian));
